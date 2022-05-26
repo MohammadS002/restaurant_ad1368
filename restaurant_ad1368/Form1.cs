@@ -7,46 +7,64 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.OleDb;
+using System.Data.SqlClient;
 
 namespace restaurant_ad1368
 {
     public partial class frmlogin : Form
     {
-        private OleDbConnection conn = new OleDbConnection();
-
-
 
         public frmlogin()
         {
+
             InitializeComponent();
 
-            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C: \Users\ALI\OneDrive\Documents\Visual Studio 2022\login form.accdb
-            Persist security Info=false;";
+
         }
         private void btnlogin_Click(object sender, EventArgs e)
         {
-            conn.Open();
-                OleDbCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "'select * from Account where username = '" + txtuser.Text + "'and password'" + txtpass.Text + "'";
-            OleDbDataReader or = cmd.ExecuteReader();
+            SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-ICV2K48;Initial Catalog=log;Integrated Security=True");
+            SqlCommand cmd = new SqlCommand("select * from tbl_login where username='" + txtuser.Text + "' and password='" + txtpass.Text + "'", conn);
+            SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            string cmbItemValue = comboBox1.SelectedItem.ToString();
+            if (dt.Rows.Count > 0)
+{
+                for (int i = 0; i < dt.Rows.Count; i++)
+{
 
-            int count = 0;
-            while(or.Read())
-            {
-                count = count + 1;
-                
+                    if (dt.Rows[i]["username"].ToString() == cmbItemValue) 
+                    {
+
+                        MessageBox.Show("you are login as " + dt.Rows[i][2]);
+                        if (comboBox1.SelectedIndex == 0)
+                        {
+                            frmpos f = new frmpos();
+                            f.Show();
+                            this.Hide();
+                        }
+                        else
+                        {
+                           
+                            Form3 ff = new Form3();
+                            this.Hide();
+                            ff.Show();
+                        }
+                    }
+
+                }
+
             }
-            if(count == 1)
+else
             {
-                MessageBox.Show("login successfuly", "success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("error");
             }
-            else
-            {
-                MessageBox.Show("incorrect username or password", "error", MessageBoxButtons.OK, MessageBoxIcon.Error);          
-            }
-            conn.Close();
+
+
+
+
         }
-
     }
+
 }

@@ -33,6 +33,7 @@
             this.txtpass = new System.Windows.Forms.TextBox();
             this.lbluser = new System.Windows.Forms.Label();
             this.lblpass = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnlogin
@@ -43,7 +44,6 @@
             this.btnlogin.TabIndex = 0;
             this.btnlogin.Text = "login";
             this.btnlogin.UseVisualStyleBackColor = true;
-            this.btnlogin.Click += new System.EventHandler(this.btnlogin_Click);
             // 
             // txtuser
             // 
@@ -78,11 +78,23 @@
             this.lblpass.TabIndex = 4;
             this.lblpass.Text = "Password";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "admin",
+            "normal user"});
+            this.comboBox1.Location = new System.Drawing.Point(178, 231);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 24);
+            this.comboBox1.TabIndex = 5;
+            // 
             // frmlogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(381, 450);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lblpass);
             this.Controls.Add(this.lbluser);
             this.Controls.Add(this.txtpass);
@@ -103,6 +115,7 @@
         private System.Windows.Forms.TextBox txtpass;
         private System.Windows.Forms.Label lbluser;
         private System.Windows.Forms.Label lblpass;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
