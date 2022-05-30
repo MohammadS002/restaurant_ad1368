@@ -21,7 +21,7 @@ namespace restaurant_ad1368
 
 
         }
-        private void btnlogin_Click(object sender, EventArgs e)
+        private void btnlogin_Click_1(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-ICV2K48;Initial Catalog=log;Integrated Security=True");
             SqlCommand cmd = new SqlCommand("select * from tbl_login where username='" + txtuser.Text + "' and password='" + txtpass.Text + "'", conn);
